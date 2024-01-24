@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM%20Plex%20Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.3.0/css/fixedColumns.dataTables.min.css" />
+    <link href="elibstyle.css" rel="stylesheet" />
+    <link href="Elibraryadmin.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <!--added-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <style>
+        .custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.selected-item {
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  z-index: 1;
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+  width: 100%;
+}
+
+.options li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.notification {
+  margin-left: 10px;
+  color: #007bff;
+}
+
+.notificationstyle {
+  float: right;
+  font-size: 10px;
+}
+
+    </style>
+</head>
+<body>
+        <div class="custom-dropdown">
+            <div class="selected-item" id="selectedOption">Select an option<span class="notificationstyle"></span></div>
+            <ul class="options" id="dropdownOptions">
+            <li data-value="all">All<span class="notification">100</span></li>
+            <li data-value="compliant">Compliant<span class="notification">10</span></li>
+            <li data-value="compliant">Non - Compliant<span class="notification">10</span></li>
+            <li data-value="in-process">In-Process<span class="notification">04</span></li>
+            </ul>
+        </div>
+        
+</body>
+</html>
+<script>
+    $(document).ready(function() {
+  const dropdown = $('.custom-dropdown');
+  const selectedOption = $('#selectedOption');
+  const dropdownOptions = $('#dropdownOptions');
+
+  selectedOption.click(function(e) {
+    e.stopPropagation();
+    dropdownOptions.toggle();
+  });
+
+  $(document).click(function() {
+    dropdownOptions.hide();
+  });
+
+  dropdown.click(function(e) {
+    e.stopPropagation();
+  });
+
+  dropdownOptions.find('li').click(function() {
+    const value = $(this).data('value');
+    selectedOption.text($(this).text());
+    // Handle the selected option value (e.g., perform an action)
+    console.log('Selected value:', value);
+    dropdownOptions.hide();
+  });
+});
+
+</script>
